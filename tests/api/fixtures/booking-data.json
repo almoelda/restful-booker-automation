@@ -1,0 +1,99 @@
+{
+    "validBooking": {
+      "firstname": "John",
+      "lastname": "Doe",
+      "totalprice": 150,
+      "depositpaid": true,
+      "bookingdates": {
+        "checkin": "2024-12-01",
+        "checkout": "2024-12-05"
+      },
+      "additionalneeds": "Breakfast"
+    },
+    "bookingWithAdditionalNeeds": {
+      "firstname": "Jane",
+      "lastname": "Smith",
+      "totalprice": 200,
+      "depositpaid": false,
+      "bookingdates": {
+        "checkin": "2024-12-10",
+        "checkout": "2024-12-15"
+      },
+      "additionalneeds": "Extra towels and late checkout"
+    },
+    "updatedBooking": {
+      "firstname": "UpdatedJohn",
+      "lastname": "UpdatedDoe",
+      "totalprice": 175,
+      "depositpaid": false,
+      "bookingdates": {
+        "checkin": "2024-12-02",
+        "checkout": "2024-12-06"
+      },
+      "additionalneeds": "Lunch included"
+    },
+    "minimumValidBooking": {
+      "firstname": "Min",
+      "lastname": "Test",
+      "totalprice": 1,
+      "depositpaid": false,
+      "bookingdates": {
+        "checkin": "2024-12-01",
+        "checkout": "2024-12-02"
+      }
+    },
+    "maxFieldLengthBooking": {
+      "firstname": "VeryLongFirstNameToTestFieldLengthLimitsInTheAPIValidation",
+      "lastname": "VeryLongLastNameToTestFieldLengthLimitsInTheAPIValidation",
+      "totalprice": 999999,
+      "depositpaid": true,
+      "bookingdates": {
+        "checkin": "2024-12-01",
+        "checkout": "2024-12-31"
+      },
+      "additionalneeds": "Very long additional needs text to test field length limits and see how the API handles extremely long strings in this field which might cause issues"
+    },
+    "futureBooking": {
+      "firstname": "Future",
+      "lastname": "Guest",
+      "totalprice": 300,
+      "depositpaid": true,
+      "bookingdates": {
+        "checkin": "2025-06-01",
+        "checkout": "2025-06-07"
+      },
+      "additionalneeds": "Airport pickup"
+    },
+    "pastBooking": {
+      "firstname": "Past",
+      "lastname": "Guest",
+      "totalprice": 125,
+      "depositpaid": true,
+      "bookingdates": {
+        "checkin": "2023-01-01",
+        "checkout": "2023-01-03"
+      },
+      "additionalneeds": "Historical booking test"
+    },
+    "singleDayBooking": {
+      "firstname": "Single",
+      "lastname": "Day",
+      "totalprice": 75,
+      "depositpaid": false,
+      "bookingdates": {
+        "checkin": "2024-12-15",
+        "checkout": "2024-12-15"
+      }
+    },
+    "specialCharactersBooking": {
+      "firstname": "José",
+      "lastname": "O'Connor-Smith",
+      "totalprice": 180,
+      "depositpaid": true,
+      "bookingdates": {
+        "checkin": "2024-12-20",
+        "checkout": "2024-12-25"
+      },
+      "additionalneeds": "Dietary restrictions: gluten-free & dairy-free"
+    }
+  }

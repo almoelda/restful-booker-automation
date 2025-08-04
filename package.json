@@ -1,0 +1,48 @@
+{
+    "name": "restful-booker-automation",
+    "version": "1.0.0",
+    "description": "QA Automation test suite for Restful-booker-platform with API and UI tests",
+    "main": "index.js",
+    "scripts": {
+        "test:all": "npx playwright test",
+        "test:api": "npx playwright test tests/api/",
+        "test:ui": "npx playwright test tests/ui/",
+        "test:api:verbose": "npx playwright test tests/api/ --verbose",
+        "test:ui:headed": "npx playwright test tests/ui/ --headed",
+        "test:report": "npx playwright test --reporter=html",
+        "test:debug": "npx playwright test --debug",
+        "lint": "eslint . --ext .ts,.js",
+        "lint:fix": "eslint . --ext .ts,.js --fix",
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
+        "clean": "rimraf test-results playwright-report",
+        "install:browsers": "npx playwright install"
+    },
+    "keywords": [
+        "playwright",
+        "typescript",
+        "api-testing",
+        "ui-testing",
+        "test-automation",
+        "qa"
+    ],
+    "author": "QA Automation Engineer",
+    "license": "MIT",
+    "devDependencies": {
+        "@playwright/test": "^1.54.2",
+        "@types/node": "^20.8.0",
+        "@typescript-eslint/eslint-plugin": "^6.7.0",
+        "@typescript-eslint/parser": "^6.7.0",
+        "eslint": "^8.50.0",
+        "eslint-config-prettier": "^9.0.0",
+        "eslint-plugin-playwright": "^0.18.0",
+        "prettier": "^3.0.3",
+        "typescript": "^5.2.0"
+    },
+    "dependencies": {
+        "@faker-js/faker": "^9.9.0",
+        "ajv": "^8.12.0",
+        "dotenv": "^16.3.1",
+        "faker": "^6.6.6"
+    }
+}
