@@ -11,19 +11,29 @@ export class BasePage {
   }
 
   /**
-   * Navigate to a specific URL
+   * Navigate to a specific URL with better React support
    */
   async navigate(url: string): Promise<void> {
     this.logger.info(`Navigating to: ${url}`);
-    await this.page.goto(url);
+    await this.page.goto(url, { waitUntil: 'networkidle' });
     await this.waitForPageLoad();
   }
 
   /**
-   * Wait for page to load completely
+   * Wait for page to load completely including React components
    */
   async waitForPageLoad(): Promise<void> {
+    // Wait for network to be idle
     await this.page.waitForLoadState('networkidle');
+    
+    // Wait for React to be ready (if present)
+    await this.page.waitForFunction(() => {
+      return document.readyState === 'complete';
+    }, { timeout: 10000 });
+    
+    // Additional wait for React components to stabilize
+    await this.page.waitForTimeout(500);
+    
     this.logger.info('Page loaded successfully');
   }
 
@@ -38,36 +48,83 @@ export class BasePage {
    * Take screenshot
    */
   async takeScreenshot(name: string): Promise<void> {
-    await this.page.screenshot({ path: `screenshots/${name}.png`, fullPage: true });
-    this.logger.info(`Screenshot taken: ${name}.png`);
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+    const screenshotName = `${name}-${timestamp}`;
+    await this.page.screenshot({ 
+      path: `test-results/screenshots/${screenshotName}.png`, 
+      fullPage: true 
+    });
+    this.logger.info(`Screenshot taken: ${screenshotName}.png`);
   }
 
   /**
-   * Wait for element to be visible
+   * Wait for element to be visible with better error handling
    */
   async waitForElement(selector: string, timeout: number = 10000): Promise<Locator> {
-    const element = this.page.locator(selector);
-    await element.waitFor({ state: 'visible', timeout });
-    return element;
+    try {
+      const element = this.page.locator(selector);
+      await element.waitFor({ state: 'visible', timeout });
+      return element;
+    } catch (error) {
+      this.logger.error(`Element not found: ${selector}`, error);
+      // Take screenshot for debugging
+      await this.takeScreenshot(`element-not-found-${selector.replace(/[^a-zA-Z0-9]/g, '_')}`);
+      throw error;
+    }
   }
 
   /**
-   * Click element with wait
+   * Click element with React support
    */
   async clickElement(selector: string): Promise<void> {
-    const element = await this.waitForElement(selector);
-    await element.click();
-    this.logger.info(`Clicked element: ${selector}`);
+    try {
+      const element = await this.waitForElement(selector);
+      
+      // Scroll into view and ensure it's stable
+      await element.scrollIntoViewIfNeeded();
+      await this.page.waitForTimeout(100);
+      
+      // Click the element
+      await element.click();
+      
+      // Wait for React to process the click
+      await this.page.waitForTimeout(100);
+      
+      this.logger.info(`Clicked element: ${selector}`);
+    } catch (error) {
+      this.logger.error(`Failed to click element: ${selector}`, error);
+      await this.takeScreenshot(`click-failed-${selector.replace(/[^a-zA-Z0-9]/g, '_')}`);
+      throw error;
+    }
   }
 
   /**
-   * Fill input field
+   * Fill input field with React support
    */
   async fillInput(selector: string, value: string): Promise<void> {
-    const element = await this.waitForElement(selector);
-    await element.clear();
-    await element.fill(value);
-    this.logger.info(`Filled input ${selector} with: ${value}`);
+    try {
+      const element = await this.waitForElement(selector);
+      
+      // Focus the element first
+      await element.focus();
+      
+      // Clear the field
+      await element.fill('');
+      await this.page.waitForTimeout(100);
+      
+      // Fill with the new value
+      await element.fill(value);
+      
+      // Trigger React events
+      await element.dispatchEvent('change');
+      await element.dispatchEvent('blur');
+      
+      this.logger.info(`Filled input ${selector} with: ${value}`);
+    } catch (error) {
+      this.logger.error(`Failed to fill input: ${selector}`, error);
+      await this.takeScreenshot(`fill-failed-${selector.replace(/[^a-zA-Z0-9]/g, '_')}`);
+      throw error;
+    }
   }
 
   /**
@@ -122,6 +179,8 @@ export class BasePage {
   async scrollToElement(selector: string): Promise<void> {
     const element = this.page.locator(selector);
     await element.scrollIntoViewIfNeeded();
+    // Wait for scroll to complete
+    await this.page.waitForTimeout(300);
     this.logger.info(`Scrolled to element: ${selector}`);
   }
 

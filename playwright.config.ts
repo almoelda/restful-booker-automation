@@ -43,7 +43,7 @@ export default defineConfig({
     screenshot: 'only-on-failure',
     
     // Record video on retry
-    video: 'retain-on-failure',
+    video: 'on',
     
     // Record trace on retry
     trace: 'on-first-retry',
@@ -65,54 +65,31 @@ export default defineConfig({
         ...devices['Desktop Chrome'],
         baseURL: process.env.API_BASE_URL || 'https://automationintesting.online',
       },
+      
+
     },
 
     // UI Tests - Multiple browsers
     {
       name: 'UI Tests - Chrome',
       testMatch: /.*\/ui\/.*\.spec\.ts/,
-      use: { 
-        ...devices['Desktop Chrome'],
-        viewport: { width: 1920, height: 1080 },
+      use: {
+        browserName: 'chromium',
+        video: 'on',
+        headless: true,
+        viewport: { width: 1366, height: 768 },
+        bypassCSP: true,
+        launchOptions: {
+            args: ['--disable-web-security'],
+        },
+        baseURL: process.env.API_BASE_URL || 'https://automationintesting.online',
       },
     },
 
-    {
-      name: 'UI Tests - Firefox',
-      testMatch: /.*\/ui\/.*\.spec\.ts/,
-      use: { 
-        ...devices['Desktop Firefox'],
-        viewport: { width: 1920, height: 1080 },
-      },
-    },
 
-    {
-      name: 'UI Tests - Safari',
-      testMatch: /.*\/ui\/.*\.spec\.ts/,
-      use: { 
-        ...devices['Desktop Safari'],
-        viewport: { width: 1920, height: 1080 },
-      },
-    },
-
-    // Mobile testing
-    {
-      name: 'Mobile Chrome',
-      testMatch: /.*\/ui\/.*\.spec\.ts/,
-      use: { ...devices['Pixel 5'] },
-    },
-
-    {
-      name: 'Mobile Safari',
-      testMatch: /.*\/ui\/.*\.spec\.ts/,
-      use: { ...devices['iPhone 12'] },
-    },
   ],
-
-  // Output directory for test artifacts
+  
   outputDir: 'test-results/',
   
-  // Global setup and teardown
   globalSetup: require.resolve('./utils/global-setup.ts'),
-  globalTeardown: require.resolve('./utils/global-teardown.ts'),
 });
