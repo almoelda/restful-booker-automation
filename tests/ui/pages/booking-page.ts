@@ -31,11 +31,10 @@ export class BookingPage {
     await this.page.goto("https://automationintesting.online/", {
       waitUntil: "domcontentloaded",
     });
-    await this.page.setViewportSize({ width: 1400, height: 800 });
     await this.page.waitForLoadState("networkidle");
   }
-
-  async showRooms(): Promise<void> {
+  
+  async expectRoomTypesToBeVisible(): Promise<void> {
     await expect(this.page.getByText("Single")).toBeVisible();
     await expect(this.page.getByText("Double")).toBeVisible();
     await expect(this.page.getByText("Suite")).toBeVisible();

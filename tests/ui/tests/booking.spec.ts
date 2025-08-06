@@ -15,45 +15,31 @@ test.describe("Booking page tests", () => {
     await expect(
       bookingPage.page.locator("a.btn.btn-primary.btn-lg")
     ).toBeVisible();
-    console.log("Homepage loaded successfully");
   });
 
   test("Should show rooms section when clicking Book Now", async () => {
     await bookingPage.bookNowButton.click();
-    await bookingPage.showRooms();
-    console.log("scrolled down to rooms successfully when clicking Book Now");
+    await bookingPage.expectRoomTypesToBeVisible();
   });
 
   test("Should show rooms section when clicking Check Availability", async () => {
     await bookingPage.checkAvailabilityButton.click();
-    await bookingPage.showRooms();
-    console.log(
-      "scrolled down to rooms successfully when clicking Check Availability"
-    );
+    await bookingPage.expectRoomTypesToBeVisible();
   });
 
   test("Should show rooms section when clicking  Rooms in nabar", async () => {
     await bookingPage.roomsInNavbar.click();
-    await bookingPage.showRooms();
-    console.log(
-      "scrolled down to rooms successfully when clicking Rooms in nabar"
-    );
+    await bookingPage.expectRoomTypesToBeVisible();
   });
 
   test("Should show rooms section when clicking  Booking in navbar", async () => {
     await bookingPage.bookingInNavbar.click();
-    await bookingPage.showRooms();
-    console.log(
-      "scrolled down to rooms successfully when clicking Booking in navbar"
-    );
+    await bookingPage.expectRoomTypesToBeVisible();
   });
 
   test("Should show amenities section when clicking amenities in navbar", async () => {
     await bookingPage.amenitiesInNavbar.click();
     await expect(bookingPage.page.getByText("Our Amenities")).toBeVisible();
-    console.log(
-      "scrolled down to amenities successfully when clicking Amenities in navbar"
-    );
   });
 
   test("Should show location section when clicking  Location in navbar", async () => {
@@ -65,9 +51,6 @@ test.describe("Booking page tests", () => {
     await expect(
       bookingPage.page.locator("div.card-body >> text=Contact Information")
     ).toHaveCount(1);
-    console.log(
-      "scrolled down to location successfully when clicking Location in navbar"
-    );
   });
 
   test("Should redirect to single room with the right price", async () => {

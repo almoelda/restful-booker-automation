@@ -12,34 +12,16 @@ export default defineConfig({
     ["list"],
   ],
 
-  projects: [
-    // API Tests
-    {
-      name: "API Tests",
-      testMatch: /.*\/api\/.*\.spec\.ts/,
-      use: {
-        baseURL:
-          process.env.API_BASE_URL || "https://automationintesting.online",
-      },
+    use: {
+    browserName: "chromium",
+    baseURL: process.env.API_BASE_URL || "https://automationintesting.online",
+    bypassCSP: true,
+    screenshot: "only-on-failure",
+    video: "on",
+    launchOptions: {
+      args: ["--disable-web-security"],
     },
-
-    // UI Tests
-    {
-      name: "UI Tests - Chrome",
-      testMatch: /.*\/ui\/.*\.spec\.ts/,
-      use: {
-        browserName: "chromium",
-        bypassCSP: true,
-        launchOptions: {
-          args: ["--disable-web-security"],
-        },
-        baseURL:
-          process.env.API_BASE_URL || "https://automationintesting.online",
-        screenshot: "only-on-failure",
-        video: "on",
-      },
-    },
-  ],
+  },
 
   outputDir: "test-results/",
 });
