@@ -31,7 +31,6 @@ export class BookingPage {
     await this.page.goto("https://automationintesting.online/", {
       waitUntil: "domcontentloaded",
     });
-    await this.page.waitForLoadState("networkidle");
   }
   
   async expectRoomTypesToBeVisible(): Promise<void> {
