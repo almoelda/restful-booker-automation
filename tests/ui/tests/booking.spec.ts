@@ -105,9 +105,7 @@ test.describe("Booking page tests", () => {
         .fill(
           "i want to book a room, but im want to check whats your cancellation policy, please contact me as soon as possible."
         );
-      await Promise.all([
-        bookingPage.page.getByRole("button", { name: "Submit" }).click(),
-      ]);
+      await bookingPage.page.getByRole("button", { name: "Submit" }).click(),
       await expect(
         bookingPage.page.getByText(
           "Thanks for getting in touch Israel Israeli!"

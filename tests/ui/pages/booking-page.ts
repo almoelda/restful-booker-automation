@@ -41,10 +41,8 @@ export class BookingPage {
 
   async fillBookingForm(roomType: number): Promise<void> {
     await this.page.locator("input.form-control").nth(0).click();
-    //await this.page.locator('button[aria-label="Next Month"]').click();
     await this.page.locator(".react-datepicker__day--008").click();
     await this.page.locator("input.form-control").nth(1).click();
-    //await this.page.locator('button[aria-label="Next Month"]').click();
     await this.page.locator(".react-datepicker__day--021").click();
     await this.checkAvailabilityButton.click();
     await this.page.locator('a:has-text("Book now")').nth(roomType).click();
