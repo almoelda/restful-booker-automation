@@ -71,6 +71,27 @@ test.describe("Booking page tests", () => {
     );
   });
 
+  test("Should redirect to single room with the right price", async () => {
+    await bookingPage.fillBookingForm(1);
+    await expect(bookingPage.page.getByText("£100 x 13 nights")).toBeVisible();
+    await expect(bookingPage.page.getByText("1340")).toBeVisible();
+    await bookingPage.page.getByRole('button', { name: 'Reserve Now' }).click();
+  });
+
+  test("Should redirect to double room with the right price", async () => {
+    await bookingPage.fillBookingForm(2);
+    await expect(bookingPage.page.getByText("£150 x 13 nights")).toBeVisible();
+    await expect(bookingPage.page.getByText("1990")).toBeVisible();
+    await bookingPage.page.getByRole('button', { name: 'Reserve Now' }).click();
+  });
+
+  test("Should redirect to suite room with the right price", async () => {
+    await bookingPage.fillBookingForm(3);
+    await expect(bookingPage.page.getByText("£225 x 13 nights")).toBeVisible();
+    await expect(bookingPage.page.getByText("2965")).toBeVisible();
+    await bookingPage.page.getByRole('button', { name: 'Reserve Now' }).click();
+  });
+
   test.describe("Contact tests in booking page", () => {
     test("Should successfully submit the contact form", async () => {
       await bookingPage.contactInNavbar.click();

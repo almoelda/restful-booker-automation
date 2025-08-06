@@ -39,4 +39,23 @@ export class BookingPage {
     await expect(this.page.getByText('Suite')).toBeVisible();
   }
 
+  async fillBookingForm(roomType: number): Promise<void> {
+      await this.page.locator('input.form-control').nth(0).click();
+      //await this.page.pause();
+      await this.page.locator('button[aria-label="Next Month"]').click();
+      //await this.page.pause();
+      await this.page.locator('.react-datepicker__day--006').click();
+      //await this.page.pause();
+      await this.page.locator('input.form-control').nth(1).click();
+      await this.page.locator('button[aria-label="Next Month"]').click();
+      await this.page.locator('.react-datepicker__day--019').click();
+      await this.checkAvailabilityButton.click();
+      await this.page.locator('a:has-text("Book now")').nth(roomType).click();
+      await this.page.locator('#doReservation').click();
+      await this.page.fill('input[name="firstname"]', 'Israel');
+      await this.page.fill('input[name="lastname"]', 'Israeli');
+      await this.page.fill('input[name="email"]', 'israelisraeli@example.com');
+      await this.page.fill('input[name="phone"]', '123456789022');
+     
+  }
 }
