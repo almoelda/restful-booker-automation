@@ -44,14 +44,14 @@ export class BookingPage {
   constructor(page: Page) {
     this.page = page;
 
-    // Navigation locators - using semantic selectors
+    // Navigation locators - using specific CSS selectors to avoid duplicates
     this.bookNowButton = page.getByRole("link", { name: /book now/i });
     this.checkAvailabilityButton = page.getByRole("button", { name: "Check Availability" });
-    this.roomsInNavbar = page.getByRole("link", { name: "Rooms" });
-    this.bookingInNavbar = page.getByRole("link", { name: "Booking" });
-    this.amenitiesInNavbar = page.getByRole("link", { name: "Amenities" });
-    this.locationInNavbar = page.getByRole("link", { name: "Location" });
-    this.contactInNavbar = page.getByRole("link", { name: "Contact" });
+    this.roomsInNavbar = page.locator('a.nav-link[href="/#rooms"]');
+    this.bookingInNavbar = page.locator('a.nav-link[href="/#booking"]');
+    this.amenitiesInNavbar = page.locator('a.nav-link[href="/#amenities"]');
+    this.locationInNavbar = page.locator('a.nav-link[href="/#location"]');
+    this.contactInNavbar = page.locator('a.nav-link[href="/#contact"]');
 
     // Booking form locators - using test IDs and semantic selectors
     this.checkInInput = page.locator('input[placeholder*="Check-in"]');
