@@ -1,9 +1,11 @@
-cd .\restful-booker-automation\
-npm install
 
-run these commends to run all tests/ only api tests/ only ui tests:
+Install dependencies
+bashnpm install
 
-npm run test:all
-npm run test:api
-npm run test:ui
 
+
+🧪 Running Tests
+All Tests
+bashnpm run test:all
+API Tests Only
+bashnpm run test:api
