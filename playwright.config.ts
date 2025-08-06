@@ -14,7 +14,7 @@ export default defineConfig({
 
     use: {
     browserName: "chromium",
-    baseURL: process.env.API_BASE_URL || "https://automationintesting.online",
+    baseURL: "https://automationintesting.online",
     bypassCSP: true,
     screenshot: "only-on-failure",
     video: "on",
