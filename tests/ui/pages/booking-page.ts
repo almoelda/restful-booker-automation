@@ -28,7 +28,7 @@ export class BookingPage {
   }
 
   async goto(): Promise<void> {
-    await this.page.goto("https://automationintesting.online/", {
+    await this.page.goto("/", {
       waitUntil: "domcontentloaded",
     });
     await this.page.waitForLoadState("networkidle");
