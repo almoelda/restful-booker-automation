@@ -8,7 +8,7 @@ export class LoginPage {
   }
 
   async goto(): Promise<void> {
-    await this.page.goto("https://automationintesting.online/admin", {
+    await this.page.goto("/admin", {
       waitUntil: "domcontentloaded",
     });
     await this.page.setViewportSize({ width: 1400, height: 800 });
