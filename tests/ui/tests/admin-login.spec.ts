@@ -13,7 +13,6 @@ test.describe("Admin page tests", () => {
 
   test("Admin Login should load successfully", async () => {
     await expect(loginPage.page.getByText("Login")).toHaveCount(2);
-    console.log("Admin Login loaded successfully");
   });
 
   test("Should successfully login the contact form", async () => {
