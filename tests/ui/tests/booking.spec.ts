@@ -120,7 +120,7 @@ test.describe("Booking page tests", () => {
 
     test("Should log in and then check messages", async ({ page }) => {
       await test.step("Log in as admin", async () => {
-        await page.goto("https://automationintesting.online/admin");
+        await page.goto("/admin");
         await page.fill("#username", "admin");
         await page.fill("#password", "password");
         await Promise.all([
