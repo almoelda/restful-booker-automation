@@ -11,7 +11,5 @@ export class LoginPage {
     await this.page.goto("/admin", {
       waitUntil: "domcontentloaded",
     });
-    await this.page.setViewportSize({ width: 1400, height: 800 });
-    await this.page.waitForLoadState("networkidle");
   }
 }
