@@ -8,10 +8,10 @@ test.describe("Room Booking API Tests", () => {
     const apiHelper = new APIHelper(request);
 
     await apiHelper.createRoomBooking(
-      1,
+      3,
       "Israel",
       "Israeli",
-      { checkin: "2025-09-06", checkout: "2025-09-19" },
+      { checkin: "2025-08-06", checkout: "2025-08-07" },
       "israelisraeli@example.com",
       "1234567890333"
     );

@@ -1,15 +1,10 @@
 {
         "scripts": {
         "test:all": "npx playwright test",
-        "test:api": "npx playwright test tests/api/",
+        "test:api": "npx playwright test tests/api/ --headed",
         "test:ui": "npx playwright test tests/ui/",
-        "test:api:verbose": "npx playwright test tests/api/ --verbose",
         "test:ui:headed": "npx playwright test tests/ui/ --headed",
         "test:report": "npx playwright test --reporter=html",
-        "test:debug": "npx playwright test  --debug",
-        "lint:fix": "eslint . --ext .ts,.js --fix",
-        "format": "prettier --write .",
-        "format:check": "prettier --check .",
         "clean": "rimraf test-results playwright-report",
         "install:browsers": "npx playwright install"
     },
