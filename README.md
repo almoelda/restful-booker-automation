@@ -1,11 +1,14 @@
+```
+cd restful-booker-automation
+npm install
+```
 
-Install dependencies
-bashnpm install
 
+# All tests
+npm run test:all
 
+# API tests only
+npm run test:api
 
-🧪 Running Tests
-All Tests
-bashnpm run test:all
-API Tests Only
-bashnpm run test:api
+# UI tests only  
+npm run test:ui
