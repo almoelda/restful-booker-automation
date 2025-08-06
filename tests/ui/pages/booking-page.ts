@@ -103,7 +103,7 @@ export class BookingPage {
     // Select check-out date
     await this.checkOutInput.click();
     await this.page.locator('[data-testid="checkout-day-21"]').or(this.page.locator(".react-datepicker__day--021")).click();
-    
+
     await this.checkAvailabilityButton.click();
     
     // Select room type (1=Single, 2=Double, 3=Suite)

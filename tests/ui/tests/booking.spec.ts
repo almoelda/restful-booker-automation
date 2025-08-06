@@ -71,7 +71,7 @@ test.describe("Booking page tests", () => {
       await expect(
         bookingPage.page.getByText("Send Us a Message")
       ).toBeVisible();
-      
+
       await bookingPage.submitContactForm(
         "Israel Israeli",
         "israelisraeli@example.com",

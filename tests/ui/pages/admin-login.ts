@@ -3,7 +3,7 @@ import { Page, expect, Locator } from "@playwright/test";
 export class LoginPage {
   readonly page: Page;
 
-  // Locators for login form elements
+  // Locators for login 
   readonly usernameInput: Locator;
   readonly passwordInput: Locator;
   readonly loginButton: Locator;
@@ -14,7 +14,7 @@ export class LoginPage {
   constructor(page: Page) {
     this.page = page;
 
-    // Initialize locators based on the React component structure
+    // Initialize locators 
     this.usernameInput = page.locator("#username");
     this.passwordInput = page.locator("#password");
     this.loginButton = page.locator("#doLogin");
